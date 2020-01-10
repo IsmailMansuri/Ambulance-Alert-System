@@ -4,6 +4,10 @@
 
 #include <SPI.h>
 #include <RH_NRF24.h>
+#include <LiquidCrystal.h>
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 // Singleton instance of the radio driver
 RH_NRF24 nrf24;
@@ -13,6 +17,9 @@ RH_NRF24 nrf24;
 
 void setup() 
 {
+// set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+
   Serial.begin(9600);
   while (!Serial) 
     ; // wait for serial port to connect. Needed for Leonardo only
@@ -45,6 +52,7 @@ void loop()
     {
       Serial.print("got reply: ");
       Serial.println((char*)buf);
+      lcd.print((char*)buf);
     }
     else
     {
