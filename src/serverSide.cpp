@@ -1,18 +1,18 @@
+
+// Biomed Device Server Side Code 
+// by: Ismail Mansuri
+// Made for Arduino Micro
+
+
 #include Arduino.h
-
-// nrf24_server side
-
 #include <SPI.h>
 #include <RH_NRF24.h>
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12,11,5,4,3,2);
 
-// Singleton instance of the radio driver
+// Radio driver
 RH_NRF24 nrf24;
-// RH_NRF24 nrf24(8, 7); // use this to be electrically compatible with Mirf
-// RH_NRF24 nrf24(8, 10);// For Leonardo, need explicit SS pin
-// RH_NRF24 nrf24(8, 7); // For RFM73 on Anarduino Mini
 
 void setup() 
 {
@@ -34,13 +34,12 @@ void loop()
 {
   if (nrf24.available())
   {
-    // Should be a message for us now   
+    // Should be a message if the connection is active 
     uint8_t buf[RH_NRF24_MAX_MESSAGE_LEN];
     uint8_t len = sizeof(buf);
     if (nrf24.recv(buf, &len))
     {
-//      NRF24::printBuffer("request: ", buf, len);
-      Serial.print("got request: ");
+      Serial.print("got request: "); //Print the request from the client
       Serial.println((char*)buf);
       lcd.print((char*)buf);
       

@@ -1,31 +1,29 @@
+// Biomed Device Client Side Code 
+// by: Ismail Mansuri
+// Made for Arduino Micro
+
+
 #include <Arduino.h>
-
-// nrf24_client end
-
 #include <SPI.h>
 #include <RH_NRF24.h>
 #include <LiquidCrystal.h>
 
-// initialize the library with the numbers of the interface pins
+// initialize the LCD library with the interface pins
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-// Singleton instance of the radio driver
+//Radio driver
 RH_NRF24 nrf24;
-// RH_NRF24 nrf24(8, 7); // use this to be electrically compatible with Mirf
-// RH_NRF24 nrf24(8, 10);// For Leonardo, need explicit SS pin
-// RH_NRF24 nrf24(8, 7); // For RFM73 on Anarduino Mini
 
 void setup() 
 {
-// set up the LCD's number of columns and rows:
+// Initialize LCD and the LCD's number of columns and rows:
   lcd.begin(16, 2);
 
   Serial.begin(9600);
-  while (!Serial) 
-    ; // wait for serial port to connect. Needed for Leonardo only
+  
   if (!nrf24.init())
     Serial.println("init failed");
-  // Defaults after init are 2.402 GHz (channel 2), 2Mbps, 0dBm
+  // Default after init is 2.402 GHz (channel 2), 2Mbps, 0dBm
   if (!nrf24.setChannel(1))
     Serial.println("setChannel failed");
   if (!nrf24.setRF(RH_NRF24::DataRate2Mbps, RH_NRF24::TransmitPower0dBm))
@@ -41,7 +39,7 @@ void loop()
   nrf24.send(data, sizeof(data));
   
   nrf24.waitPacketSent();
-  // Now wait for a reply
+  // Wait for a reply
   uint8_t buf[RH_NRF24_MAX_MESSAGE_LEN];
   uint8_t len = sizeof(buf);
 
