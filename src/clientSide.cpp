@@ -33,7 +33,12 @@ void setup()
 
 void loop()
 {
-  Serial.println("Sending to nrf24_server");
+  lcd.setCursor(0,0);
+  lcd.print("Checking");
+  lcd.setCursor(0, 8);
+  for(int char = 0; char < 3; char++){
+    lcd.print(".");
+  }
   // Send a message to nrf24_server
   uint8_t data[] = "Test message to server";
   nrf24.send(data, sizeof(data));
@@ -48,13 +53,18 @@ void loop()
     // Should be a reply message for us now   
     if (nrf24.recv(buf, &len))
     {
-      Serial.print("got reply: ");
+      lcd.setCursor(0,0);
+      lcd.autoscroll();
+      for(int char = 0; char <= 25; char++){
+      lcd.print("Emergency Vehicle Inbound");
+      delay(100);
+      }
       Serial.println((char*)buf);
       lcd.print((char*)buf);
     }
     else
     {
-      Serial.println("recv failed");
+      Serial.println("Coast Is Clear");
     }
   }
   else
