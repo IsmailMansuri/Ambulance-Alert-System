@@ -34,11 +34,7 @@ void setup()
 void loop()
 {
   lcd.setCursor(0,0);
-  lcd.print("Checking");
-  lcd.setCursor(0, 8);
-  for(int char = 0; char < 3; char++){
-    lcd.print(".");
-  }
+  lcd.print("Checking...");
   // Send a message to nrf24_server
   uint8_t data[] = "Test message to server";
   nrf24.send(data, sizeof(data));
@@ -64,7 +60,12 @@ void loop()
     }
     else
     {
+      lcd.setCursor(0,0);
+      lcd.autoscroll();
+      for(int char = 0; char <= 25; char++){
       Serial.println("Coast Is Clear");
+      delay(100);
+      }
     }
   }
   else
