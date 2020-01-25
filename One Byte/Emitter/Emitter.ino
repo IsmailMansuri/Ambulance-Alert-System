@@ -11,8 +11,7 @@ void setup()
   Serial.begin(9600);
   Mirf.spi = &MirfHardwareSpi;
   Mirf.init();
-  //Set your own address (sender address) using 5 characters
-  Mirf.setRADDR((byte *)"ABCDE");
+  Mirf.setRADDR((byte *)"ABCDE");           //Set your own address (sender address) using 5 characters
   Mirf.payload = sizeof(value);
   Mirf.channel = 90;              //Set the channel used
   Mirf.config();
@@ -21,7 +20,7 @@ void setup()
 void loop()
 {
   Mirf.setTADDR((byte *)"FGHIJ");           //Set the receiver address
-  value = random(255);                      //0-255 random number
+  value = 255;                      //Send value 255
   Mirf.send(&value);                //Send instructions, send random number value
   Serial.print("Wait for sending.....");
   while (Mirf.isSending())//Until you send successfully, exit the loop
