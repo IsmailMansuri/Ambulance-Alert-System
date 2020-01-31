@@ -5,7 +5,7 @@ This device allows ambulances or other emergency vehicles to communicate with tr
 Our group noticed that tracking technologies used by ambulances dated back to the 1980's, and we wanted to improve upon that and somehow allow ambulances an easier journey to get to their patients.
 
 # Build Status
-Prototype
+Working Prototype
 
 # Code Style
 Code Style: Standard
