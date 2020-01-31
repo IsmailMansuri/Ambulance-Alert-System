@@ -15,4 +15,7 @@ Code Style: Standard
 
 # Built With
    - Arduino
-   -
+   - Arduino C
+
+# Features
+Our project features two radios: one transmitting the message (for the emergency vehicle) and one receiving the message (for the other vehicles on the road). The message is a simple delcaration of the incoming emergency vehicle, flashing on and off the screen to attract the drivers' attention.
