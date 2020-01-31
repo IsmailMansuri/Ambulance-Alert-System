@@ -12,6 +12,18 @@ Code Style: Standard
 
 # Code Example
 
+    if (value == 255){
+       lcd.backlight();
+       lcd.setCursor(3, 0); 
+       lcd.print("Ambulance  "); 
+       lcd.setCursor(4, 1); 
+       lcd.print("Inbound");
+       delay(1500);
+       lcd.clear();
+       lcd.setCursor(3, 0); 
+       lcd.print("Pull Over"); 
+       delay(1500);
+    }
 
 # Built With
    - Arduino
