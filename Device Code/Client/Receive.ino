@@ -1,4 +1,7 @@
-//Receiver program
+// Ambulance Alert Receiver Code 
+// by: Ismail Mansuri
+// Made for RF-Nano board
+
 #include <SPI.h>
 #include "nRF24L01.h"
 #include <Wire.h> 
