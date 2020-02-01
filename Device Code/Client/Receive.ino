@@ -38,7 +38,6 @@ void receive()
     Mirf.getData(&value);
     Serial.print("Got data: ");
     Serial.println(value);
-
     if (value == 255){
       display(); 
     }
